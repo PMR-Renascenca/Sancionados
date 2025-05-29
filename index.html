@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Sancões</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="cabecalho-esquerda">
+            <img src="Logo.png" alt="Brasão de Renascença" class="logo-municipio" width="300">
+        </div>
+        <h1 class="titulo-cabecalho">Consulta de Sanções</h1>
+    </header>
+    
+    <div class="filtro">
+        <h2>Filtro de Pesquisa</h2>
+        <div class="filtro-grid">
+            <div class="filtro-item">
+                <label for="cadastro">Cadastro<label>
+                <select name="cadastro" id="cadastro">
+                    <option value="" disabled selected>Selecione um cadastro</option>
+                    <option value="acordoLeniencia">Acordo Leniência</option>
+                    <option value="ceaf">CEAF</option>
+                    <option value="ceis">CEIS</option>
+                    <option value="cepim">CEPIM</option>
+                    <option value="CNEP">CNEP</option>
+                </select>
+            </div>
+            <div class="filtro-item">
+                <label for="tipoSancionado">Tipo Sancionado</label>
+                <select name="tipoSancionado" id="tipoSancionado">
+                    <option value="" disabled selected>Selecione tipo sancionado</option>
+                    <option value="CNPJ">CNPJ</option>
+                    <option value="CPF">CPF</option>
+                </select>
+            </div>
+
+            <div class="filtro-item">
+                <label for="nomeSancionado">Nome Sancionado</label>
+                <select name="nomeSancionado" id="nomeSancionado">
+                    <option value="" disabled selected>Selecione um nome</option>
+                    <option value="CEBRADE-CENTRAL BRASILEIRA DE ESTAGIO LTDA">CEBRADE-CENTRAL BRASILEIRA DE ESTAGIO LTDA</option>
+                    <option value="HORTI FOODS DISTRIBUIDORA DE ALIMENTOS LTDA">HORTI FOODS DISTRIBUIDORA DE ALIMENTOS LTDA</option>
+                    <option value="NOVA GERACAO ALIMENTOS LTDA">NOVA GERACAO ALIMENTOS LTDA</option>
+                    <option value="AGIL LTDA">AGIL LTDA</option>
+                </select>
+            </div>
+
+            <div class="filtro-item">
+                <label for="uf">UF Sancionado</label>
+                <select name="uf" id="uf">
+                    <option value="" disabled selected>Selecione um uf</option>
+                    <option value="PR">PR</option>
+                    <option value="SC">SC</option>
+                </select>
+            </div>
+            <div class="filtro-item">
+                <label for="orgaoEntidadeSancionado">Órgão/Entidade Sancionada</label>
+                <select name="orgaoEntidadeSancionado" id="orgaoEntidadeSancionado">
+                    <option value="" disabled selected>Selecione uma Órgão/Entidade</option>
+                    <option value="Prefeitura de Renascenca">Prefeitura de Renascenca</option>
+                </select>
+            </div>
+
+            <div class="filtro-item">
+                <label for="categoriaSancao">Categoria de Sancão</label>
+                <select name="categoriaSancao" id="categoriaSancao">
+                    <option value="" disabled selected>Selecione uma categoria de sancão</option>
+                    <option value="Impedimento/proibição de contratar com prazo determinado">Impedimento/proibição de contratar com prazo determinado</option>
+                    <option value="Suspensão">Suspensão</option>
+                </select>
+            </div>
+
+            <div class="filtro-item">
+                <label for="dataSancao">Data de Publicação da Sancão</label>
+                <input type="date" name="dataSancao" id="dataSancao">
+            </div>
+
+            <div class="filtro-item">
+                <label for="multa">Valor da Multa</label>
+                <input type="number" name="multa" id="multa">
+            </div>
+
+            <div class="filtro-item">
+                <label for="quantidade">Quantidade de Sancionados</label>
+                <input type="number" name="quantidade" id="quantidade">
+            </div>
+
+            <div class="filtro-item">
+                <label for="periodoVigencia">Período de Vigência</label>
+                <input type="date" name="periodoVigencia" id="periodoVigencia">
+            </div>
+        </div>
+        <div style="display: flex; gap: 16px; justify-content: flex-end; margin-top: 16px;">
+            <button type="button" class="botao" onclick="buscar()">Buscar</button>
+            <button type="button" class="botao-limpar" onclick="limparFiltros()">Limpar Filtros</button>
+        </div>
+    </div>
+
+
+
+    <div class="resultados">
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th>Cadastro</th>
+                    <th>Tipo Sancionado</th>
+                    <th>Nome Sancionado</th>
+                    <th>UF Sancionado</th>
+                    <th>Órgão/Entidade Sancionada</th>
+                    <th>Categoria de Sancão</th>
+                    <th>Data de Publicação da Sancão</th>
+                    <th>Valor da Multa</th>
+                    <th>Quantidade de Sancionados</th>
+                    <th>Período de Vigência</th>
+                    <th>Detalhes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-tipo="cadastro">CEIS</td>
+                    <td data-tipo="tipoSancionado">CNPJ</td>
+                    <td data-tipo="nomeSancionado">CEBRADE-CENTRAL BRASILEIRA DE ESTAGIO LTDA</td>
+                    <td data-tipo="uf">PR</td>
+                    <td data-tipo="orgaoEntidadeSancionado">Prefeitura de Renascenca</td>
+                    <td data-tipo="categoriaSancao">Impedimento/proibição de contratar com prazo determinado</td>
+                    <td data-tipo="dataSancao">Sem Informação</td>
+                    <td data-tipo="multa">não se aplica</td>
+                    <td data-tipo="quantidade">1</td>
+                    <td data-tipo="periodoVigencia"></td>
+                    <td data-tipo="detalhes">
+                        <select id="cebrade" class="formato-select">
+                            <option value="pdf">PDF</option>
+                            <option value="docx">DOCX</option>
+                            <option value="txt">TXT</option>
+                            <option value="csv">CSV</option>
+                            <option value="odt">ODT</option>
+                            <option value="rtf">RTF</option>
+                        </select>
+                        <button class="botao-download" onclick="baixarArquivo('cebrade')" aria-label="Baixar CEBRADE">
+                            Baixar
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td data-tipo="cadastro">CEIS</td>
+                    <td data-tipo="tipoSancionado">CNPJ</td>
+                    <td data-tipo="nomeSancionado">AGIL LTDA</td>
+                    <td data-tipo="uf">SC</td>
+                    <td data-tipo="orgaoEntidadeSancionado">Prefeitura de Renascenca</td>
+                    <td data-tipo="categoriaSancao">Impedimento/proibição de contratar com prazo determinado</td>
+                    <td data-tipo="dataSancao">Sem Informação</td>
+                    <td data-tipo="multa">não se aplica</td>
+                    <td data-tipo="quantidade">1</td>
+                    <td data-tipo="periodoVigencia"></td>
+                    <td data-tipo="detalhes">
+                        <select id="agil" class="formato-select">
+                            <option value="pdf">PDF</option>
+                            <option value="docx">DOCX</option>
+                            <option value="txt">TXT</option>
+                            <option value="csv">CSV</option>
+                            <option value="odt">ODT</option>
+                            <option value="rtf">RTF</option>
+                        </select>
+                        <button class="botao-download" onclick="baixarArquivo('agil')" aria-label="Baixar AGIL">
+                            Baixar
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td data-tipo="cadastro">CEIS</td>
+                    <td data-tipo="tipoSancionado">CNPJ</td>
+                    <td data-tipo="nomeSancionado">HORTI FOODS DISTRIBUIDORA DE ALIMENTOS LTDA</td>
+                    <td data-tipo="uf">PR</td>
+                    <td data-tipo="orgaoEntidadeSancionado">Prefeitura de Renascenca</td>
+                    <td data-tipo="categoriaSancao">Suspensão</td>
+                    <td data-tipo="dataSancao">Sem Informação</td>
+                    <td data-tipo="multa">não se aplica</td>
+                    <td data-tipo="quantidade">1</td>
+                    <td data-tipo="periodoVigencia"></td>
+                    <td data-tipo="detalhes">
+                        <select id="horti-foods" class="formato-select">
+                            <option value="pdf">PDF</option>
+                            <option value="docx">DOCX</option>
+                            <option value="txt">TXT</option>
+                            <option value="csv">CSV</option>
+                            <option value="odt">ODT</option>
+                            <option value="rtf">RTF</option>
+                        </select>
+                        <button class="botao-download" onclick="baixarArquivo('horti-foods')" aria-label="Baixar HORTI FOODS">
+                            Baixar
+                        </button>
+                    </td>
+                </tr> 
+                <tr>
+                    <td data-tipo="cadastro">CEIS</td>
+                    <td data-tipo="tipoSancionado">CNPJ</td>
+                    <td data-tipo="nomeSancionado">NOVA GERACAO ALIMENTOS LTDA</td>
+                    <td data-tipo="uf">PR</td>
+                    <td data-tipo="orgaoEntidadeSancionado">Prefeitura de Renascenca</td>
+                    <td data-tipo="categoriaSancao">Suspensão</td>
+                    <td data-tipo="dataSancao">Sem Informação</td>
+                    <td data-tipo="multa">não se aplica</td>
+                    <td data-tipo="quantidade">1</td>
+                    <td data-tipo="periodoVigencia"></td>
+                    <td data-tipo="detalhes">
+                        <select id="nova-geracao" class="formato-select">
+                            <option value="pdf">PDF</option>
+                            <option value="docx">DOCX</option>
+                            <option value="txt">TXT</option>
+                            <option value="csv">CSV</option>
+                            <option value="odt">ODT</option>
+                            <option value="rtf">RTF</option>
+                        </select>
+                        <button class="botao-download" onclick="baixarArquivo('nova-geracao')" aria-label="Baixar NOVA GERACAO">
+                            Baixar
+                        </button>
+                    </td>
+                </tr> 
+            </tbody>
+        </table>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
